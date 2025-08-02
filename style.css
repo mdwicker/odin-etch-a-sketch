@@ -1,0 +1,13 @@
+#grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    width: 50vw;
+    justify-content: stretch;
+}
+
+.grid-square {
+    background-color: black;
+    flex: 1 1;
+    aspect-ratio: 1/1;
+}
