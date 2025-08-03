@@ -15,6 +15,19 @@ function setUpGrid(width) {
         
         grid.appendChild(row);
     }
+
+    return grid;
 }
 
-setUpGrid(16);
+function handleHover(e) {
+    const square = e.target;
+    square.classList.add("darkened-square");
+}
+
+grid = setUpGrid(16);
+
+grid.addEventListener("mouseover", handleHover);
+
+// document.querySelectorAll(".grid-square").forEach(square => {
+//     square.addEventListener("click", handleHover);
+// });
