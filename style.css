@@ -2,17 +2,31 @@
     --border-size: 1px;
 }
 
-body {
+#container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    width: 30vh;
+    min-width: 400px;
     height: 100vh;
+    gap: 20px;
+    margin: auto;
+}
+
+#size-controls-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+#size-input {
+    width: 3em;
 }
 
 #grid {
     display: flex;
     flex-direction: column;
-    width: 30vw;
+    width: 100%;
     aspect-ratio: 1 / 1;
     justify-content: stretch;
     align-items: stretch;

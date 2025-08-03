@@ -1,5 +1,5 @@
-function setUpGrid(width) {
-    const grid = document.querySelector("#grid");
+function makeGridRows(width) {
+    let rows = [];
 
     for (i = 0; i < width; i++) {
         const row = document.createElement("div");
@@ -13,10 +13,10 @@ function setUpGrid(width) {
             row.appendChild(square);
         }
         
-        grid.appendChild(row);
+        rows.push(row);
     }
 
-    return grid;
+    return rows;
 }
 
 function handleHover(e) {
@@ -24,10 +24,35 @@ function handleHover(e) {
     square.classList.add("darkened-square");
 }
 
-grid = setUpGrid(16);
+function updateGridSize(size) {
+    grid.replaceChildren(...makeGridRows(size));
+}
 
+function updateSize(e) {
+    const inputField = e.target;
+
+    if (inputField.value > 100) {
+        inputField.value = 100;
+    }
+
+    const size = inputField.value;
+
+    if (inputField.type === "number") {
+        document.querySelector("#size-slider").value = size;
+    } else {
+        document.querySelector("#size-number").value = size;
+    }
+    
+    updateGridSize(size);
+}
+
+
+const grid = document.querySelector("#grid");
+grid.append(...makeGridRows(16));
 grid.addEventListener("mouseover", handleHover);
 
-// document.querySelectorAll(".grid-square").forEach(square => {
-//     square.addEventListener("click", handleHover);
-// });
+
+document.querySelectorAll(".size-input").forEach(sizeInput => {
+    sizeInput.addEventListener("input", updateSize);
+});
+
