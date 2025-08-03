@@ -1,13 +1,22 @@
 #grid {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 5px;
     width: 50vw;
+    aspect-ratio: 1 / 1;
     justify-content: stretch;
+    align-items: stretch;
+}
+
+.grid-row {
+    display: flex;
+    gap: 5px;
+    justify-content: stretch;
+    align-items: stretch;
 }
 
 .grid-square {
     background-color: black;
     flex: 1 1;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1 / 1;
 }

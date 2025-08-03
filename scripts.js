@@ -1,13 +1,19 @@
 function setUpGrid(width) {
-    const numberOfSquares = width * width;
     const grid = document.querySelector("#grid");
-    const gap = window.getComputedStyle(grid).gap;
 
-    for (i = 0; i < numberOfSquares; i++) {
-        const square = document.createElement("div");
-        square.classList.add("grid-square");
-        square.style.flexBasis = `calc(${100 / width}% - ${gap})`
-        grid.appendChild(square);
+    for (i = 0; i < width; i++) {
+        const row = document.createElement("div");
+        row.classList.add("grid-row");
+        row.id = `row${i}`;
+
+        for (j = 0; j < width; j++) {
+            const square = document.createElement("div");
+            square.classList.add("grid-square");
+            square.id = `col${j}`;
+            row.appendChild(square);
+        }
+        
+        grid.appendChild(row);
     }
 }
 
