@@ -19,12 +19,43 @@ function makeGridRows(width) {
     return rows;
 }
 
-function handleHover(e) {
+function fillSquare(e) {
     const square = e.target;
-    square.classList.add("darkened-square");
+    if (square.classList.contains("grid-square")) {
+        if (mode === "classic") {
+            fillSquareClassic(square);
+        } else if(mode === "rainbow") {
+            fillSquareRainbow(square);
+        } else if (mode === "darken") {
+            fillSquareDarken(square);
+        } else {
+            console.log(`Error. ${mode} mode does not exist.`);
+        }
+    }
 }
 
-function updateGridSize(size) {
+function fillSquareClassic(square) {
+    square.style.backgroundColor = "rgb(83, 83, 83)";
+}
+
+function fillSquareRainbow(square) {
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+
+    square.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+}
+
+function fillSquareDarken(square) {
+    if (!square.style.opacity) {
+        square.style.opacity = 0.9;
+    } else if (square.style.opacity >= 0.1) {
+        square.style.opacity -= 0.1;
+    }
+}
+
+function resetGrid() {
+    size = document.querySelector("#size-slider").value;
     grid.replaceChildren(...makeGridRows(size));
 }
 
@@ -43,16 +74,33 @@ function updateSize(e) {
         document.querySelector("#size-number").value = size;
     }
     
-    updateGridSize(size);
+    resetGrid();
 }
 
+function changeFillMode(e) {
+    document.querySelectorAll(".mode-btn").forEach(btn => {
+        if (btn == e.target) {
+            mode = btn.id;
+            btn.classList.add("selected");
+        } else {
+            btn.classList.remove("selected");
+        }
+    });
+}
 
 const grid = document.querySelector("#grid");
 grid.append(...makeGridRows(16));
-grid.addEventListener("mouseover", handleHover);
+grid.addEventListener("mouseover", fillSquare);
 
 
 document.querySelectorAll(".size-input").forEach(sizeInput => {
     sizeInput.addEventListener("input", updateSize);
 });
+
+document.querySelector("#clear").addEventListener("click", resetGrid);
+
+let mode = "classic";
+document.querySelectorAll(".mode-btn").forEach(btn => {
+    btn.addEventListener("click", changeFillMode);
+})
 

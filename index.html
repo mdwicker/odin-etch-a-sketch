@@ -8,6 +8,16 @@
 </head>
 <body>
     <div id="container">
+        <div id="draw-settings">
+            <div class="draw-modes">
+                <span>Modes: </span>
+                <button class="mode-btn selected" id="classic">Classic</button>
+                <button class="mode-btn" id="rainbow">Rainbow</button>
+                <button class="mode-btn" id="darken">Darken</button>
+            </div>
+            <button id="clear">Clear</button>
+        </div>
+        <div id="grid"></div>
         <div id="size-controls-container">
             <div>
                 <label for="size-number">Size:</label>
@@ -15,7 +25,6 @@
             </div>
             <input type="range" min="2" max="100" value="16" id="size-slider" class="size-input">
         </div>
-        <div id="grid"></div>
     </div>
     <script src="scripts.js"></script>
 </body>

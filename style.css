@@ -1,12 +1,12 @@
 :root {
-    --border-size: 1px;
+    --gap-size: 2px;
 }
 
 #container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 30vh;
+    width: 60vh;
     min-width: 400px;
     height: 100vh;
     gap: 20px;
@@ -16,11 +16,23 @@
 #size-controls-container {
     display: flex;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 20px;
 }
 
 #size-input {
     width: 3em;
+}
+
+#draw-settings {
+    display: flex;
+    justify-content: space-between;
+}
+
+button.selected {
+    background-color: rgb(100, 100, 100);
+    border: solid red 2px;
+    color: white;
 }
 
 #grid {
@@ -30,13 +42,17 @@
     aspect-ratio: 1 / 1;
     justify-content: stretch;
     align-items: stretch;
-    border: solid black var(--border-size);
+    padding: 2px;
+    background-color: black;
+    gap: var(--gap-size);
+    box-sizing: border-box;
 }
 
 .grid-row {
     display: flex;
     justify-content: stretch;
     align-items: stretch;
+    gap: var(--gap-size);
 }
 
 .grid-square {
